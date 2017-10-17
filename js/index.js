@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   var inputArr = [];
-  var input = "";
+  var inputInt = "";
   var LSO = "";
   var RSO = "";
   var result = 0;
@@ -61,50 +61,48 @@ $(document).ready(function () {
     console.log(inputArr);
   });
 
-  // ABOVE : BORING EVENT HANDLERS
+  // ABOVE : BORING EVENT HANDLERS ()
 
   // BELOW : MORE INTERESTING STUFF
 
   $('#equals').click(function(event) {
     console.log(inputArr);
     if (recentOp === '+') {
-      for (let digit of inputArr) {
-        input += digit;
+      for (let i of inputArr) {
+        RSO += i;
       }
-      result += parseInt(input);
-      input = "";
-      console.log("i >>", input, "r >>", result);
+      parseInt(RSO);
+      result = parseInt(LSO) + parseInt(RSO);
+      console.log(result);
       $('#screen').text(`${result}`);
       inputArr = [];
     }
     if (recentOp === '-') {
-      for (let digit of inputArr) {
-        input += digit;
+      for (let i of inputArr) {
+        RSO += i;
       }
-      result -= parseInt(input);
-      input = "";
-      console.log("i >>", input, "r >>", result);
+      parseInt(RSO);
+      result = parseInt(LSO) - parseInt(RSO);
+      console.log(result);
       $('#screen').text(`${result}`);
       inputArr = [];
     }
     if (recentOp === '*') {
-      for (let digit of inputArr) {
-        input += digit;
+      for (let i of inputArr) {
+        RSO += i;
       }
-      // parseInt(RSO);
-      result *= parseInt(input);
-      input = "";
+      parseInt(RSO);
+      result = parseInt(LSO) * parseInt(RSO);
       console.log(result);
       $('#screen').text(`${result}`);
       inputArr = [];
     }
     if (recentOp === '/') {
-      for (let digit of inputArr) {
-        input += digit;
+      for (let i of inputArr) {
+        RSO += i;
       }
-      // parseInt(RSO);
-      result /= parseInt(input);
-      input = "";
+      parseInt(RSO);
+      result = parseInt(LSO) / parseInt(RSO);
       console.log(result);
       $('#screen').text(`${result}`);
       inputArr = [];
@@ -114,26 +112,25 @@ $(document).ready(function () {
   });
   $('#plus').click(function (event) {
     $("#screen").text('');
-    console.log(input);
-    for (let digit of inputArr) {
-      input += digit;
+    console.log(inputArr);
+    for (let i of inputArr) {
+      LSO += i;
     }
-    result += parseInt(input);
-    input = "";
+    parseInt(LSO);
+    result += LSO;
+    console.log(LSO);
     recentOp = '+';
     inputArr = [];
   })
   $('#minus').click(function (event) {
     $("#screen").text(' ');
     console.log(inputArr);
-    for (let digit of inputArr) {
-      input += digit;
+    for (let i of inputArr) {
+      LSO += i;
     }
     parseInt(LSO);
-    result = LSO;
+    result += LSO;
     console.log(LSO);
-    result += input;
-    input = "";
     recentOp = '-';
     inputArr = [];
   })
@@ -143,12 +140,8 @@ $(document).ready(function () {
     for (let i of inputArr) {
       LSO += i;
     }
-    for (let digit of inputArr) {
-      input += digit;
-    }
     parseInt(LSO);
     result += LSO;
-    result = "";
     console.log(LSO);
     recentOp = '*';
     inputArr = [];
@@ -161,17 +154,15 @@ $(document).ready(function () {
     }
     parseInt(LSO);
     result += LSO;
-    result = "";
     console.log(LSO);
     recentOp = '/';
     inputArr = [];
   })
   $('#clear').click(function(event) {
-    // LSO = "";
-    // console.log("LSO>>>", LSO);
-    // RSO = "";
-    // console.log("RSO", RSO);
-    input = "";
+    LSO = "";
+    console.log("LSO>>>", LSO);
+    RSO = "";
+    console.log("RSO", RSO);
     result = 0;
     console.log("result >>", result);
     recentOp;
