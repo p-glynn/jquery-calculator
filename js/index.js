@@ -8,15 +8,15 @@ $('document').ready(function () {
 
   var equals = function (event) {
     var exp = $('#screen')["0"].innerText;
-    var ops = replace(exp).match(/[\+\-\*\/]/g);
+    var ops = strReplace(exp).match(/[\+\-\*\/]/g);
     if (ops.length > 1) {
       $('#screen').empty().append('ERROR');
     } else {
-      $('#screen').empty().append(eval(replace(exp)));
+      $('#screen').empty().append(eval(strReplace(exp)));
     }
   }
 
-  var replace = function (str) {
+  function strReplace (str) {
     return str.replace('÷', '/').replace('x', '*').replace('=', '');
   }
 
@@ -34,3 +34,7 @@ $('document').ready(function () {
 // still to do:
 // make negative numbers work - may be tricky?
 // add tests
+
+module.exports = {
+  strReplace
+}
